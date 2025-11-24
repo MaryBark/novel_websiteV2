@@ -18,30 +18,48 @@ document.addEventListener('DOMContentLoaded', function() {
     // Инициализация аккордеона для творческого пути
     initWritingAccordion();
 
+
       const dropdown = document.getElementById('additional-dropdown');
-            const dropdownLink = dropdown.querySelector('.nav-link');
+            const additionalButton = document.getElementById('additional-button');
+            const isMobile = window.innerWidth <= 768;
             
-            // Обработчик для мобильных устройств
-            if (window.innerWidth <= 768) {
-                dropdownLink.addEventListener('click', function(e) {
+            // Только для мобильных устройств
+            if (isMobile) {
+                additionalButton.addEventListener('click', function(e) {
                     e.preventDefault();
-                    e.stopPropagation(); // Предотвращаем всплытие события
+                    console.log('Клик по дополнительно');
                     
-                    // Переключаем состояние dropdown
+                    // Закрываем все другие открытые dropdown (если будут)
+                    document.querySelectorAll('.dropdown').forEach(otherDropdown => {
+                        if (otherDropdown !== dropdown && otherDropdown.classList.contains('active')) {
+                            otherDropdown.classList.remove('active');
+                        }
+                    });
+                    
+                    // Переключаем текущий dropdown
                     dropdown.classList.toggle('active');
                 });
                 
-                // Закрытие меню при клике вне его
+                // Закрытие при клике вне dropdown
                 document.addEventListener('click', function(e) {
                     if (!dropdown.contains(e.target)) {
                         dropdown.classList.remove('active');
                     }
                 });
                 
-                // Предотвращаем закрытие при клике на само меню
+                // Предотвращаем закрытие при клике внутри dropdown
                 dropdown.addEventListener('click', function(e) {
                     e.stopPropagation();
                 });
+            }
+            
+            // Обработчик ресайза
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    dropdown.classList.remove('active');
+                }
+
+    
 });
 
 // Адаптивный viewport для мобильных устройств

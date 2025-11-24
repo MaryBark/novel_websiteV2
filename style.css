@@ -72,7 +72,7 @@ body {
     color: var(--fantasy);
 }
 
-        /* Стили для выпадающего меню */
+ /* Стили для выпадающего меню */
         .dropdown {
             position: relative;
         }
@@ -81,8 +81,8 @@ body {
             position: absolute;
             top: 100%;
             left: 0;
-            right: 0;
             background: white;
+            min-width: 200px;
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             opacity: 0;
@@ -101,14 +101,12 @@ body {
 
         .dropdown-link {
             display: block;
-            padding: 15px 20px;
+            padding: 12px 20px;
             text-decoration: none;
             color: #2c3e50;
             border-radius: 8px;
             margin: 5px;
             transition: all 0.3s ease;
-            text-align: center;
-            font-weight: 500;
         }
 
         .dropdown-link:hover {
@@ -121,7 +119,7 @@ body {
             margin-right: 10px;
         }
 
-        /* Стили для мобильных устройств */
+        /* Адаптивность */
         @media (max-width: 768px) {
             .nav-menu {
                 flex-direction: column;
@@ -135,34 +133,11 @@ body {
                 box-shadow: none;
                 background: #f8f9fa;
                 margin-top: 10px;
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.3s ease;
-            }
-            
-            .dropdown.active .dropdown-content {
-                max-height: 200px;
-            }
-            
-            .dropdown > .nav-link {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-            
-            .dropdown > .nav-link .chevron {
-                transition: transform 0.3s ease;
-            }
-            
-            .dropdown.active > .nav-link .chevron {
-                transform: rotate(180deg);
-            }
-        }
-
-        /* Стили для десктопов */
-        @media (min-width: 769px) {
-            .dropdown > .nav-link .chevron {
                 display: none;
+            }
+            
+            .dropdown:hover .dropdown-content {
+                display: block;
             }
         }
 
