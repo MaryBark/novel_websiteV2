@@ -1,0 +1,3214 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #2c3e50;
+    --secondary: #3498db;
+    --accent: #e74c3c;
+    --fantasy: #9b59b6;
+    --scifi: #1abc9c;
+    --light: #ecf0f1;
+    --dark: #2c3e50;
+    --superiora: #8e44ad;
+    --moscow: #2980b9;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    line-height: 1.6;
+    color: var(--dark);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Навигация */
+.navbar {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo span {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--fantasy);
+}
+
+
+/* Аннотация романа */
+.annotation {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+    border-radius: 20px;
+    padding: 3rem;
+    margin-bottom: 4rem;
+    border-left: 5px solid var(--fantasy);
+    position: relative;
+    overflow: hidden;
+}
+
+.annotation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--fantasy), var(--scifi), var(--secondary));
+}
+
+.annotation-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.annotation-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    color: var(--dark);
+    text-align: left;
+}
+
+.annotation-highlight {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary);
+    display: block;
+    text-align: center;
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, var(--fantasy), var(--scifi));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.annotation-questions {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 2px solid rgba(155, 89, 182, 0.2);
+}
+
+.question {
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--fantasy);
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.question:last-child {
+    margin-bottom: 0;
+}
+
+/* Сетка о романе */
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.about-card {
+    background: white;
+    padding: 2.5rem 2rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    border-top: 4px solid transparent;
+}
+
+.about-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.about-card:nth-child(1) {
+    border-top-color: var(--secondary);
+}
+
+.about-card:nth-child(2) {
+    border-top-color: var(--fantasy);
+}
+
+.about-card:nth-child(3) {
+    border-top-color: var(--scifi);
+}
+
+.about-card i {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.about-card:nth-child(1) i {
+    color: var(--secondary);
+}
+
+.about-card:nth-child(2) i {
+    color: var(--fantasy);
+}
+
+.about-card:nth-child(3) i {
+    color: var(--scifi);
+}
+
+.about-card h3 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+}
+
+.about-card p {
+    color: var(--dark);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Адаптивность для аннотации */
+@media (max-width: 768px) {
+    .annotation {
+        padding: 2rem 1.5rem;
+        margin-bottom: 3rem;
+        border-radius: 15px;
+    }
+    
+    .annotation-text {
+        font-size: 1.1rem;
+        text-align: center;
+    }
+    
+    .annotation-highlight {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .question {
+        font-size: 1.1rem;
+    }
+    
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .about-card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .about-card i {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .annotation {
+        padding: 1.5rem 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .annotation-text {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    
+    .annotation-highlight {
+        font-size: 1.1rem;
+    }
+    
+    .question {
+        font-size: 1rem;
+    }
+    
+    .annotation-questions {
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+    }
+    
+    .about-card {
+        padding: 1.5rem 1rem;
+    }
+    
+    .about-card h3 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Анимации для появления */
+.annotation {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.about-card {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.about-card:nth-child(1) { animation-delay: 0.2s; }
+.about-card:nth-child(2) { animation-delay: 0.4s; }
+.about-card:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Герой-секция */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/cover.jpg') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    margin-top: 0;
+}
+
+.hero-overlay {
+    padding: 2rem;
+}
+
+.hero-badge {
+    background: var(--accent);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+    display: inline-block;
+}
+
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    line-height: 1.2;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    font-weight: 300;
+    color: var(--light);
+}
+
+.hero-annotation {
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    font-size: 1.2rem;
+    line-height: 1.8;
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 15px 30px;
+    background: var(--fantasy);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid var(--fantasy);
+    font-size: 1.1rem;
+}
+
+.cta-button:hover {
+    background: transparent;
+    border-color: white;
+    transform: translateY(-2px);
+}
+
+/* Секции */
+section {
+    padding: 100px 0;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--primary);
+}
+
+.subsection-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    text-align: center;
+    margin: 3rem 0 2rem;
+    color: var(--secondary);
+}
+
+/* О романе */
+.about {
+    background: white;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.about-card {
+    background: var(--light);
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.about-card:hover {
+    transform: translateY(-5px);
+}
+
+.about-card i {
+    font-size: 3rem;
+    color: var(--fantasy);
+    margin-bottom: 1rem;
+}
+
+.about-card h3 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+/* Персонажи */
+.protagonists-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+}
+
+.character-hero {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.character-image {
+    height: 800px;
+    background: linear-gradient(135deg, var(--dark), var(--accent));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.character-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.character-info {
+    padding: 2rem;
+}
+
+.character-info h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+
+.character-role {
+    color: var(--dark);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.character-goal {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background: #ffeaea;
+    border-radius: 5px;
+    border-left: 4px solid var(--accent);
+}
+
+/* Антагонисты */
+.antagonists-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+}
+
+.character-villain {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.villain-image {
+    height: 800px;
+    background: linear-gradient(135deg, var(--dark), var(--accent));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.villain-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.abstract-villain {
+    color: white;
+    font-size: 4rem;
+}
+
+.villain-info {
+    padding: 2rem;
+}
+
+.villain-info h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+
+.villain-role {
+    color: var(--dark);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.villain-goal, .villain-trait {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background: #ffeaea;
+    border-radius: 5px;
+    border-left: 4px solid var(--accent);
+}
+
+/* Миры */
+.worlds {
+    background: white;
+}
+
+.worlds-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.world-card {
+    background: var(--light);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.world-header {
+    padding: 2rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.world-header.superiora {
+    background: linear-gradient(135deg, var(--superiora), #6c3483);
+}
+
+.world-header.moscow {
+    background: linear-gradient(135deg, var(--moscow), #21618c);
+}
+
+.world-header.organizations {
+    background: linear-gradient(135deg, #27ae60, #229954);
+}
+
+.world-header i {
+    font-size: 2rem;
+}
+
+.world-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.world-content {
+    padding: 2rem;
+}
+
+.world-characters h4 {
+    color: var(--primary);
+    margin: 1.5rem 0 1rem;
+}
+
+.world-characters ul {
+    list-style: none;
+    padding: 0;
+}
+
+.world-characters li {
+    padding: 0.3rem 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.world-characters li:last-child {
+    border-bottom: none;
+}
+
+.organization {
+    margin-bottom: 1.5rem;
+}
+
+.organization h4 {
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+/* Особенности */
+.features {
+    background: #f8f9fa;
+}
+
+.usp-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    margin-bottom: 3rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-left: 5px solid var(--fantasy);
+}
+
+.usp-card h3 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.usp-card p {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--dark);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.feature-item {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+}
+
+.feature-item i {
+    font-size: 2.5rem;
+    color: var(--scifi);
+    margin-bottom: 1rem;
+}
+
+.feature-item h4 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+/* Автор */
+.author {
+    background: white;
+}
+
+.author-profile {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.author-image {
+    text-align: center;
+}
+
+.author-image img {
+    width: 100%;
+    max-width: 250px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.author-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 2rem;
+}
+
+.author-education, .author-achievements, .author-writing, .author-social {
+    margin-bottom: 2rem;
+}
+
+.author-info h4 {
+    color: var(--secondary);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.author-info ul {
+    list-style: none;
+    padding: 0;
+}
+
+.author-info li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.author-info li:before {
+    content: "•";
+    color: var(--fantasy);
+    position: absolute;
+    left: 0;
+}
+
+.social-links {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.social-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--light);
+    border-radius: 25px;
+}
+
+.social-item i {
+    color: var(--fantasy);
+}
+
+/* Футер */
+.footer {
+    background: var(--dark);
+    color: white;
+    padding: 3rem 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-brand h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .protagonists-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .character-hero {
+        flex-direction: column;
+    }
+    
+    .character-image {
+        flex: none;
+        height: 800px;
+    }
+    
+    .author-profile {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .protagonists-grid,
+    .antagonists-grid,
+    .worlds-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+}
+
+/* CSS Reset и базовые настройки */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+    --primary: #2c3e50;
+    --secondary: #3498db;
+    --accent: #e74c3c;
+    --fantasy: #9b59b6;
+    --scifi: #1abc9c;
+    --light: #ecf0f1;
+    --dark: #2c3e50;
+    --superiora: #8e44ad;
+    --moscow: #2980b9;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    line-height: 1.6;
+    color: var(--dark);
+    background: white;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* Контейнер с защитой от переполнения */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    width: 100%;
+}
+
+/* Улучшенная навигация для мобильных */
+.navbar {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    padding: 0;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.nav-logo span {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.nav-menu {
+    display: flex;
+    gap: clamp(1rem, 3vw, 2rem);
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: 600;
+    font-size: clamp(0.9rem, 3vw, 1rem);
+    transition: color 0.3s ease;
+    padding: 0.5rem;
+}
+
+.nav-link:hover {
+    color: var(--fantasy);
+}
+
+/* Мобильное меню */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: var(--primary);
+    margin: 3px 0;
+    transition: 0.3s;
+    border-radius: 2px;
+}
+
+/* Герой-секция с улучшениями для мобильных */
+.hero {
+    min-height: 100vh;
+    height: auto;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('./images/cover.jpg') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 80px 20px 40px;
+    margin: 0;
+}
+
+.hero-overlay {
+    padding: clamp(1rem, 5vw, 2rem);
+    max-width: 800px;
+    width: 100%;
+}
+
+.hero-badge {
+    background: var(--accent);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    font-size: clamp(0.8rem, 3vw, 0.9rem);
+    margin-bottom: 2rem;
+    display: inline-block;
+    font-weight: 600;
+}
+
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    line-height: 1.2;
+    word-wrap: break-word;
+}
+
+.hero-subtitle {
+    font-size: clamp(1.1rem, 4vw, 1.5rem);
+    margin-bottom: 2rem;
+    font-weight: 300;
+    color: var(--light);
+}
+
+.hero-annotation {
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    line-height: 1.6;
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: clamp(12px, 4vw, 15px) clamp(20px, 5vw, 30px);
+    background: var(--fantasy);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid var(--fantasy);
+    font-size: clamp(1rem, 3vw, 1.1rem);
+    min-height: 44px;
+    justify-content: center;
+}
+
+.cta-button:hover {
+    background: transparent;
+    border-color: white;
+    transform: translateY(-2px);
+}
+
+/* Секции с отступами для навигации */
+section {
+    padding: clamp(40px, 10vw, 80px) 0;
+    width: 100%;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 6vw, 2.5rem);
+    text-align: center;
+    margin-bottom: clamp(2rem, 6vw, 3rem);
+    color: var(--primary);
+    padding: 0 15px;
+}
+
+/* Адаптивные сетки */
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+    gap: clamp(1rem, 3vw, 2rem);
+    padding: 0 15px;
+}
+
+.protagonists-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+    gap: clamp(1.5rem, 4vw, 3rem);
+    margin-bottom: clamp(2rem, 6vw, 4rem);
+    padding: 0 15px;
+}
+
+/* Карточки персонажей для мобильных */
+.character-hero {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.character-image {
+    width: 100%;
+    height: 800px;
+    overflow: hidden;
+}
+
+.character-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.character-info {
+    padding: clamp(1rem, 3vw, 2rem);
+    flex: 1;
+}
+
+.character-info h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+/* Миры */
+.worlds-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+    gap: clamp(1rem, 3vw, 2rem);
+    padding: 0 15px;
+}
+
+/* Особенности */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+    gap: clamp(1rem, 3vw, 2rem);
+    padding: 0 15px;
+}
+
+/* Автор */
+.author-profile {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    padding: 0 15px;
+}
+
+.author-image {
+    text-align: center;
+    order: 2;
+}
+
+.author-image img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.author-info {
+    order: 1;
+}
+
+/* Медиа-запросы для мобильных устройств */
+@media (max-width: 768px) {
+    /* Мобильное меню */
+    .hamburger {
+        display: flex;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        flex-direction: column;
+        background: white;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+        padding: 1rem 0;
+        gap: 0;
+    }
+    
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .nav-link {
+        padding: 1rem;
+        display: block;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .nav-link:last-child {
+        border-bottom: none;
+    }
+    
+    /* Улучшения для маленьких экранов */
+    .hero {
+        padding: 70px 15px 30px;
+    }
+    
+    .character-hero {
+        margin: 0 10px;
+    }
+    
+    .container {
+        padding: 0 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        min-height: 70vh;
+        padding: 60px 10px 20px;
+    }
+    
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .character-image {
+        height: 800px;
+    }
+    
+    /* Убираем сложные эффекты на мобильных */
+    .navbar {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: white;
+    }
+}
+
+/* Защита от переполнения текста */
+.character-info h4,
+.hero-title,
+.section-title {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+/* Улучшаем читаемость на мобильных */
+p, li {
+    font-size: clamp(0.9rem, 3vw, 1rem);
+    line-height: 1.6;
+}
+
+/* Предотвращаем масштабирование на input */
+input, textarea {
+    font-size: 16px; /* Предотвращает зум в iOS */
+}
+
+/* Улучшаем скролл на iOS */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--fantasy);
+    border-radius: 4px;
+}
+
+/* Сетка персонажей Супериоры */
+.characters-grid-superiora {
+    background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), 
+                url('superiora-background.jpg') center/cover;
+    backdrop-filter: blur(5px);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-top: 1.5rem;
+}
+
+/* Команды персонажей */
+.character-team {
+    margin-bottom: 2.5rem;
+}
+
+.character-team:last-child {
+    margin-bottom: 0;
+}
+
+.team-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid;
+}
+
+/* Стили для разных команд */
+.light-team .team-header {
+    border-color: #f39c12;
+    color: #f39c12;
+}
+
+.undecided-team .team-header {
+    border-color: #95a5a6;
+    color: #95a5a6;
+}
+
+.dark-team .team-header {
+    border-color: #e74c3c;
+    color: #e74c3c;
+}
+
+.team-header i {
+    font-size: 1.5rem;
+}
+
+.team-header h4 {
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+/* Сетка персонажей в командах */
+.team-characters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+}
+
+.character-item {
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.character-photo {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+/* Цвета рамок для разных команд */
+.light-team .character-photo {
+    border-color: #f39c12;
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+}
+
+.undecided-team .character-photo {
+    border-color: #95a5a6;
+    background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+}
+
+.dark-team .character-photo {
+    border-color: #e74c3c;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.character-photo:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+.character-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.character-description h5 {
+    font-family: 'Playfair Display', serif;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.character-description p {
+    color: var(--dark);
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+/* Бейджи для статусов */
+.character-status {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    margin-top: 0.3rem;
+}
+
+.light-team .character-status {
+    background: rgba(243, 156, 18, 0.1);
+    color: #f39c12;
+}
+
+.undecided-team .character-status {
+    background: rgba(149, 165, 166, 0.1);
+    color: #95a5a6;
+}
+
+.dark-team .character-status {
+    background: rgba(231, 76, 60, 0.1);
+    color: #e74c3c;
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+    .characters-grid-superiora {
+        padding: 1.5rem;
+    }
+    
+    .team-characters {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+    }
+    
+    .character-photo {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .team-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .characters-grid-superiora {
+        padding: 1rem;
+    }
+    
+    .team-characters {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .character-photo {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .character-description h5 {
+        font-size: 0.9rem;
+    }
+    
+    .character-description p {
+        font-size: 0.8rem;
+    }
+}
+
+/* Анимации */
+.character-team {
+    opacity: 0;
+    transform: translateX(-30px);
+    animation: slideInRight 0.6s ease forwards;
+}
+
+.light-team { animation-delay: 0.1s; }
+.undecided-team { animation-delay: 0.3s; }
+.dark-team { animation-delay: 0.5s; }
+
+@keyframes slideInRight {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Эффекты при наведении на команду */
+.character-team:hover .team-header {
+    transform: translateX(10px);
+    transition: transform 0.3s ease;
+}
+
+/* Если нет реальных фото - стили для заглушек */
+.character-photo.placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.character-photo.placeholder::before {
+    content: "👑";
+}
+
+.light-team .character-photo.placeholder::before {
+    content: "⚔️";
+}
+
+.undecided-team .character-photo.placeholder::before {
+    content: "❓";
+}
+
+.dark-team .character-photo.placeholder::before {
+    content: "👿";
+}
+
+
+/* Сетка персонажей Москвы */
+.characters-grid-moscow {
+    background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), 
+                url('moscow-background.jpg') center/cover;
+    backdrop-filter: blur(8px);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-top: 1.5rem;
+}
+
+.character-row {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.character-item {
+    text-align: center;
+    flex: 0 0 calc(33.333% - 2rem);
+    min-width: 200px;
+}
+
+.character-photo {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--moscow);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.character-photo:hover {
+    transform: scale(1.1);
+    border-color: var(--fantasy);
+}
+
+.character-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.character-description h5 {
+    font-family: 'Playfair Display', serif;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.character-description p {
+    color: var(--dark);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Сетка организаций */
+.organizations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.organization-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 2rem;
+    background: var(--light);
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    border-left: 5px solid var(--scifi);
+}
+
+.organization-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.org-icon {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--scifi), var(--secondary));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.org-info h4 {
+    color: var(--primary);
+    margin-bottom: 0.8rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.org-info p {
+    color: var(--dark);
+    line-height: 1.6;
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+    .characters-grid-moscow {
+        padding: 1.5rem;
+    }
+    
+    .character-row {
+        gap: 1.5rem;
+    }
+    
+    .character-item {
+        flex: 0 0 calc(50% - 1.5rem);
+        min-width: 150px;
+    }
+    
+    .character-photo {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .organizations-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .organization-item {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .characters-grid-moscow {
+        padding: 1rem;
+    }
+    
+    .character-item {
+        flex: 0 0 100%;
+    }
+    
+    .character-row {
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .character-photo {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .character-description h5 {
+        font-size: 1rem;
+    }
+    
+    .character-description p {
+        font-size: 0.8rem;
+    }
+}
+
+/* Анимация появления */
+.character-item, .organization-item {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.character-item:nth-child(1) { animation-delay: 0.1s; }
+.character-item:nth-child(2) { animation-delay: 0.2s; }
+.character-item:nth-child(3) { animation-delay: 0.3s; }
+.character-item:nth-child(4) { animation-delay: 0.4s; }
+.character-item:nth-child(5) { animation-delay: 0.5s; }
+.character-item:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+
+/* Стили для полноэкранных миров */
+.world-fullpage {
+    margin-bottom: 4rem;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.world-fullpage:hover {
+    transform: translateY(-5px);
+}
+
+.world-fullpage .world-header {
+    padding: 2.5rem;
+    text-align: center;
+}
+
+.world-fullpage .world-content {
+    padding: 0 2.5rem 2.5rem;
+}
+
+.world-description {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--dark);
+    margin-bottom: 2rem;
+    font-style: italic;
+    border-bottom: 2px solid var(--light);
+    padding-bottom: 1.5rem;
+}
+
+/* Улучшенные стили для сеток персонажей */
+.characters-grid-superiora,
+.characters-grid-moscow {
+    background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), 
+                var(--world-background) center/cover;
+    backdrop-filter: blur(8px);
+    border-radius: 15px;
+    padding: 2.5rem;
+    margin-top: 1rem;
+}
+
+.characters-grid-superiora {
+    --world-background: url('superiora-background.jpg');
+}
+
+.characters-grid-moscow {
+    --world-background: url('moscow-background.jpg');
+}
+
+/* Улучшенные стили для команд */
+.character-team {
+    margin-bottom: 3rem;
+    padding: 2rem;
+    border-radius: 15px;
+    background: rgba(255,255,255,0.8);
+    transition: all 0.3s ease;
+}
+
+.character-team:hover {
+    background: rgba(255,255,255,0.95);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.light-team {
+    border-left: 5px solid #f39c12;
+}
+
+.undecided-team {
+    border-left: 5px solid #95a5a6;
+}
+
+.dark-team {
+    border-left: 5px solid #e74c3c;
+}
+
+/* Адаптивность для полноэкранных миров */
+@media (max-width: 768px) {
+    .world-fullpage .world-header {
+        padding: 2rem 1.5rem;
+    }
+    
+    .world-fullpage .world-content {
+        padding: 0 1.5rem 2rem;
+    }
+    
+    .characters-grid-superiora,
+    .characters-grid-moscow {
+        padding: 1.5rem;
+    }
+    
+    .character-team {
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .world-fullpage {
+        margin-bottom: 2rem;
+        border-radius: 15px;
+    }
+    
+    .world-fullpage .world-header {
+        padding: 1.5rem 1rem;
+    }
+    
+    .world-fullpage .world-content {
+        padding: 0 1rem 1.5rem;
+    }
+    
+    .characters-grid-superiora,
+    .characters-grid-moscow {
+        padding: 1rem;
+    }
+    
+    .character-team {
+        padding: 1rem;
+    }
+    
+    .world-description {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* Анимации для появления миров */
+.world-fullpage {
+    opacity: 0;
+    transform: translateY(50px);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.world-fullpage:nth-child(1) { animation-delay: 0.1s; }
+.world-fullpage:nth-child(2) { animation-delay: 0.3s; }
+.world-fullpage:nth-child(3) { animation-delay: 0.5s; }
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Индикатор прокрутки между мирами */
+.worlds::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, var(--fantasy), transparent);
+    transform: translateX(-50%);
+    opacity: 0.3;
+}
+
+
+/* Архитектоника романа */
+.plot-architecture {
+    background: linear-gradient(135deg, #97a8f5 0%, #764ba2 100%);
+    color: white;
+    padding: 80px 0;
+}
+
+.plot-architecture .section-title {
+    color: white;
+    margin-bottom: 3rem;
+}
+
+.plot-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Основной сюжет */
+.main-plot {
+    margin-bottom: 4rem;
+}
+
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: rgba(255,255,255,0.3);
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.timeline-item:nth-child(odd) {
+    flex-direction: row-reverse;
+}
+
+.timeline-marker {
+    width: 20px;
+    height: 20px;
+    background: #ff6b6b;
+    border-radius: 50%;
+    border: 3px solid white;
+    z-index: 2;
+}
+
+.timeline-content {
+    flex: 1;
+    padding: 2rem;
+    margin: 0 2rem;
+    background: rgba(255,255,255,0.1);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.timeline-content h4 {
+    color: #ff6b6b;
+    margin-bottom: 1rem;
+}
+
+/* Сюжетные линии */
+.lines-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.plot-line {
+    background: rgba(255,255,255,0.1);
+    padding: 2rem;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.line-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.line-header i {
+    font-size: 1.5rem;
+    color: #ff6b6b;
+}
+
+.line-header h4 {
+    margin: 0;
+}
+
+.line-progress {
+    margin-bottom: 1.5rem;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #4ecdc4;
+    border-radius: 4px;
+}
+
+.progress-text {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.line-elements {
+    list-style: none;
+    padding: 0;
+}
+
+.line-elements li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.line-elements li:last-child {
+    border-bottom: none;
+}
+
+/* Масштаб миров */
+.scale-visual {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.world-item {
+    background: rgba(255,255,255,0.1);
+    padding: 2rem;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    text-align: center;
+}
+
+.world-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #ff6b6b;
+}
+
+.world-info h4 {
+    color: #4ecdc4;
+    margin-bottom: 1rem;
+}
+
+.world-elements {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.element-tag {
+    background: rgba(255,255,255,0.2);
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+}
+
+/* Артефакты */
+.artifacts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+.artifact-item {
+    background: rgba(255,255,255,0.1);
+    padding: 2rem;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    text-align: center;
+}
+
+.artifact-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.artifact-item h4 {
+    color: #4ecdc4;
+    margin-bottom: 1rem;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .timeline::before {
+        left: 20px;
+    }
+    
+    .timeline-item {
+        flex-direction: row !important;
+    }
+    
+    .timeline-content {
+        margin-left: 3rem;
+        margin-right: 0;
+    }
+    
+    .lines-grid,
+    .scale-visual,
+    .artifacts-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .plot-architecture {
+        padding: 60px 0;
+    }
+    
+    .plot-title {
+        font-size: 1.5rem;
+    }
+    
+    .timeline-content {
+        padding: 1.5rem;
+        margin-left: 2rem;
+    }
+    
+    .plot-line,
+    .world-item,
+    .artifact-item {
+        padding: 1.5rem;
+    }
+}
+
+
+.features {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    position: relative;
+}
+
+.features .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    color: #2c3e50;
+    font-weight: 700;
+}
+
+.features-content {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+/* USP Card */
+.usp-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    margin-bottom: 20px;
+}
+
+.usp-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.usp-card p {
+    font-size: 1.2rem;
+    font-style: italic;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Features Grid */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.feature-item {
+    background: white;
+    padding: 30px 25px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    border-left: 4px solid #667eea;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.feature-item i {
+    font-size: 2.5rem;
+    color: #667eea;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.feature-item h4 {
+    font-size: 1.3rem;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.feature-item p {
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Commercial Potential */
+.commercial-potential {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.commercial-potential h3 {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.potential-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.potential-item {
+    padding: 25px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border-left: 4px solid #e74c3c;
+}
+
+.potential-item h4 {
+    font-size: 1.1rem;
+    color: #2c3e50;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.potential-item p {
+    color: #666;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Relevance */
+.relevance {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.relevance h3 {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.relevance-content p {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.relevance-content ul {
+    list-style: none;
+    padding: 0;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.relevance-content li {
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #27ae60;
+    color: #2c3e50;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.relevance-content li:hover {
+    background: #e8f5e8;
+    transform: translateX(5px);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .features {
+        padding: 50px 0;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .feature-item {
+        padding: 25px 20px;
+    }
+    
+    .commercial-potential,
+    .relevance {
+        padding: 30px 20px;
+    }
+    
+    .potential-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .usp-card {
+        padding: 25px 20px;
+    }
+    
+    .usp-card h3 {
+        font-size: 1.3rem;
+    }
+    
+    .usp-card p {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .feature-item {
+        padding: 20px 15px;
+    }
+    
+    .feature-item i {
+        font-size: 2rem;
+    }
+    
+    .feature-item h4 {
+        font-size: 1.2rem;
+    }
+}
+
+
+/* Секция аналогов */
+/* Секция аналогий - исправленная для мобильных */
+.analogues-section {
+    background: #f8f9fa;
+    padding: 60px 0;
+}
+
+.analogues-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+.analogue-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.analogue-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.analogue-header {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, var(--primary), var(--dark));
+    color: white;
+    min-height: 120px;
+}
+
+.analogue-image {
+    width: 80px;
+    height: 100px;
+    margin-right: 1.5rem;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+    position: relative;
+}
+
+.analogue-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Fallback для изображений */
+.image-fallback {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--secondary), var(--scifi));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    border-radius: 8px;
+}
+
+/* Скрываем fallback если изображение загружено */
+.analogue-image img:not([src=""]) + .image-fallback {
+    display: none;
+}
+
+.analogue-info {
+    flex: 1;
+    min-width: 0; /* Важно для обрезания длинного текста */
+}
+
+.analogue-info h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+    font-family: 'Playfair Display', serif;
+    line-height: 1.3;
+    word-wrap: break-word;
+}
+
+.analogue-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.rating-stars {
+    color: #ffd700;
+    font-size: 0.9rem;
+}
+
+.rating-text {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+.analogue-content {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.similarities, .differences {
+    margin-bottom: 1.5rem;
+}
+
+.similarities h4, .differences h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.similarities h4 {
+    color: var(--scifi);
+}
+
+.differences h4 {
+    color: var(--fantasy);
+}
+
+.similarities ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.similarities li {
+    padding: 0.3rem 0;
+    position: relative;
+    padding-left: 1.2rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.similarities li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--scifi);
+    font-weight: bold;
+}
+
+.differences p {
+    margin: 0;
+    line-height: 1.5;
+    background: rgba(155, 89, 182, 0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--fantasy);
+    font-size: 0.9rem;
+}
+
+/* Мобильная адаптивность */
+@media (max-width: 768px) {
+    .analogues-section {
+        padding: 40px 0;
+    }
+    
+    .analogues-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0 10px;
+    }
+    
+    .analogue-header {
+        flex-direction: row;
+        padding: 1.2rem;
+        min-height: 100px;
+    }
+    
+    .analogue-image {
+        width: 70px;
+        height: 90px;
+        margin-right: 1rem;
+    }
+    
+    .analogue-info h3 {
+        font-size: 1rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .analogue-rating {
+        gap: 0.3rem;
+    }
+    
+    .rating-stars {
+        font-size: 0.8rem;
+    }
+    
+    .rating-text {
+        font-size: 0.75rem;
+    }
+    
+    .analogue-content {
+        padding: 1.2rem;
+    }
+    
+    .similarities li {
+        font-size: 0.85rem;
+    }
+    
+    .differences p {
+        font-size: 0.85rem;
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .analogue-header {
+        padding: 1rem;
+        min-height: 90px;
+    }
+    
+    .analogue-image {
+        width: 60px;
+        height: 80px;
+        margin-right: 0.8rem;
+    }
+    
+    .image-fallback {
+        font-size: 1.5rem;
+    }
+    
+    .analogue-info h3 {
+        font-size: 0.95rem;
+    }
+    
+    .analogue-content {
+        padding: 1rem;
+    }
+    
+    .similarities h4, .differences h4 {
+        font-size: 0.9rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .similarities li {
+        padding: 0.2rem 0;
+        font-size: 0.8rem;
+    }
+    
+    /* Улучшаем отображение на очень маленьких экранах */
+    @media (max-width: 360px) {
+        .analogue-header {
+            flex-direction: column;
+            text-align: center;
+            padding: 1rem;
+        }
+        
+        .analogue-image {
+            margin-right: 0;
+            margin-bottom: 0.8rem;
+            width: 80px;
+            height: 100px;
+        }
+        
+        .analogue-rating {
+            justify-content: center;
+        }
+    }
+}
+
+/* Оптимизация загрузки изображений */
+.analogue-image img {
+    transition: opacity 0.3s ease;
+}
+
+.analogue-image img[loading="lazy"] {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.analogue-image img[loading="lazy"].loaded {
+    opacity: 1;
+}
+
+
+/* автор */
+.author-writing {
+    margin: 30px 0;
+}
+
+.author-writing h4 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.writing-accordion {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+}
+
+.writing-item {
+    border-bottom: 1px solid #e9ecef;
+    background: white;
+}
+
+.writing-item:last-child {
+    border-bottom: none;
+}
+
+.writing-header {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.writing-header:hover {
+    background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+}
+
+.writing-header.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.writing-header.active .writing-number {
+    background: rgba(255,255,255,0.9);
+    color: #667eea;
+}
+
+.writing-number {
+    width: 35px;
+    height: 35px;
+    background: #667eea;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.writing-header h5 {
+    margin: 0;
+    flex-grow: 1;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.writing-header i {
+    transition: transform 0.3s ease;
+    color: #6c757d;
+}
+
+.writing-header.active i {
+    transform: rotate(180deg);
+    color: white;
+}
+
+.writing-content {
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    background: white;
+}
+
+.writing-content.open {
+    padding: 25px;
+    max-height: 2000px;
+}
+
+.project-timeline {
+    margin-bottom: 25px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #28a745;
+}
+
+.project-phase {
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed #dee2e6;
+}
+
+.project-phase:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.project-phase strong {
+    color: #2c3e50;
+    display: inline-block;
+    min-width: 80px;
+}
+
+.books-loglains h6 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.loglain-item {
+    position: relative;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.loglain-item:hover {
+    border-color: #667eea;
+    box-shadow: 0 3px 10px rgba(102, 126, 234, 0.1);
+}
+
+.status-sticker {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 2;
+}
+
+.status-sticker.ready {
+    background: #28a745;
+    color: white;
+    box-shadow: 0 2px 5px rgba(40, 167, 69, 0.3);
+}
+
+.status-sticker.in-progress {
+    background: #ffc107;
+    color: #212529;
+    box-shadow: 0 2px 5px rgba(255, 193, 7, 0.3);
+}
+
+.status-ready {
+    border-left: 4px solid #28a745;
+}
+
+.status-in-progress {
+    border-left: 4px solid #ffc107;
+}
+
+.book-number {
+    display: block;
+    background: #667eea;
+    color: white;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    margin-right: 80px; /* Оставляем место для стикера */
+}
+
+.loglain-item p {
+    margin: 0;
+    color: #495057;
+    line-height: 1.5;
+    font-style: italic;
+}
+
+/* Анимация для стикеров "в процессе" */
+.status-sticker.in-progress {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .status-sticker {
+        position: relative;
+        top: auto;
+        right: auto;
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+    
+    .book-number {
+        margin-right: 0;
+    }
+}
+
+/* Стили для секции генератора искусственного языка */
+.conlang {
+    padding: 80px 0;
+    background-color: #f9f9f9;
+}
+
+.conlang-intro {
+    max-width: 800px;
+    margin: 0 auto 60px;
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.conlang-features {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.feature.reverse {
+    flex-direction: row-reverse;
+}
+
+.feature-content {
+    flex: 1;
+}
+
+.feature-content h3 {
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+.feature-image {
+    flex: 1;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.feature-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.conlang-technical {
+    margin-top: 60px;
+    padding: 30px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.conlang-technical h3 {
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+.conlang-technical ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.conlang-technical li {
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .feature, .feature.reverse {
+        flex-direction: column;
+    }
+    
+    .feature-image {
+        width: 100%;
+    }
+}
+
+/* Стили для секции метал-оперы */
+.metal-opera {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #fff;
+}
+
+.metal-opera .section-title {
+    color: #fff;
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.metal-opera .section-title::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 3px;
+    background: #e94560;
+    margin: 15px auto 0;
+}
+
+.opera-intro {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 60px;
+    align-items: flex-start;
+}
+
+.opera-cover {
+    flex: 0 0 300px;
+}
+
+.cover-placeholder {
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(45deg, #0f3460, #e94560);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    color: rgba(255,255,255,0.7);
+    border: 2px solid #e94560;
+}
+
+.cover-placeholder span {
+    font-size: 1rem;
+    margin-top: 15px;
+}
+
+.opera-description {
+    flex: 1;
+}
+
+.opera-description p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+
+.opera-tracks {
+    margin-bottom: 60px;
+}
+
+.opera-tracks h3 {
+    margin-bottom: 30px;
+    color: #e94560;
+    text-align: center;
+}
+
+.tracks-container {
+    display: flex;
+    gap: 40px;
+    justify-content: space-between;
+}
+
+.track-side {
+    flex: 1;
+    background: rgba(255,255,255,0.05);
+    padding: 25px;
+    border-radius: 8px;
+    border-left: 4px solid #e94560;
+}
+
+.track-side h4 {
+    margin-bottom: 20px;
+    color: #e94560;
+    font-size: 1.3rem;
+}
+
+.track-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.track-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.track-item:hover {
+    background: rgba(233, 69, 96, 0.1);
+}
+
+.track-number {
+    background: #e94560;
+    color: white;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.track-title {
+    font-weight: 500;
+}
+
+.opera-lyrics {
+    margin-bottom: 60px;
+}
+
+.opera-lyrics h3 {
+    margin-bottom: 30px;
+    color: #e94560;
+    text-align: center;
+}
+
+.song-section {
+    margin-bottom: 30px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.song-header {
+    background: rgba(233, 69, 96, 0.2);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(233, 69, 96, 0.3);
+}
+
+.song-header h4 {
+    margin: 0;
+    color: #e94560;
+}
+
+.song-role {
+    background: #e94560;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.lyrics {
+    padding: 20px;
+    line-height: 1.8;
+}
+
+.lyrics.dark {
+    background: rgba(15, 52, 96, 0.3);
+}
+
+.lyrics.chorus {
+    background: rgba(233, 69, 96, 0.1);
+    font-style: italic;
+}
+
+.lyrics-highlight {
+    color: #e94560;
+    font-weight: bold;
+}
+
+.opera-significance h3 {
+    margin-bottom: 30px;
+    color: #e94560;
+    text-align: center;
+}
+
+.significance-content {
+    display: flex;
+    gap: 30px;
+}
+
+.significance-item {
+    flex: 1;
+    background: rgba(255,255,255,0.05);
+    padding: 25px;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.significance-item:hover {
+    transform: translateY(-5px);
+}
+
+.significance-icon {
+    font-size: 2.5rem;
+    color: #e94560;
+    margin-bottom: 15px;
+}
+
+.significance-text h5 {
+    color: #e94560;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.significance-text p {
+    line-height: 1.6;
+    color: #ccc;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .opera-intro {
+        flex-direction: column;
+    }
+    
+    .opera-cover {
+        flex: 1;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    
+    .tracks-container {
+        flex-direction: column;
+    }
+    
+    .significance-content {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .author-image {
+        order: 3; /* Фото перемещается в конец */
+    }
+    .author-info {
+        order: 1; /* Контент остается первым */
+    }
+}
+
+      
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 768px) {
+            .author-social {
+                padding: 20px;
+                margin: 0 10px;
+            }
+            
+            .author-social h4 {
+                font-size: 1.2rem;
+            }
+            
+            .social-item {
+                padding: 12px;
+                gap: 12px;
+            }
+            
+            .social-item i {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .author-social {
+                padding: 15px;
+            }
+            
+            .social-item {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+            
+            .social-item i {
+                align-self: center;
+            }
+        }
