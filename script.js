@@ -18,49 +18,90 @@ document.addEventListener('DOMContentLoaded', function() {
     // Инициализация аккордеона для творческого пути
     initWritingAccordion();
 
-
-      const dropdown = document.getElementById('additional-dropdown');
-            const additionalButton = document.getElementById('additional-button');
-            const isMobile = window.innerWidth <= 768;
-            
-            // Только для мобильных устройств
-            if (isMobile) {
-                additionalButton.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    console.log('Клик по дополнительно');
-                    
-                    // Закрываем все другие открытые dropdown (если будут)
-                    document.querySelectorAll('.dropdown').forEach(otherDropdown => {
-                        if (otherDropdown !== dropdown && otherDropdown.classList.contains('active')) {
-                            otherDropdown.classList.remove('active');
-                        }
-                    });
-                    
-                    // Переключаем текущий dropdown
-                    dropdown.classList.toggle('active');
-                });
-                
-                // Закрытие при клике вне dropdown
-                document.addEventListener('click', function(e) {
-                    if (!dropdown.contains(e.target)) {
-                        dropdown.classList.remove('active');
-                    }
-                });
-                
-                // Предотвращаем закрытие при клике внутри dropdown
-                dropdown.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                });
-            }
-            
-            // Обработчик ресайза
-            window.addEventListener('resize', function() {
-                if (window.innerWidth > 768) {
-                    dropdown.classList.remove('active');
-                }
-
-    
+    // Инициализация выпадающего меню
+    initDropdownMenu();
 });
+
+// Функция инициализации выпадающего меню
+function initDropdownMenu() {
+    const dropdown = document.getElementById('additional-dropdown');
+    const additionalButton = document.getElementById('additional-button');
+    
+    if (!dropdown || !additionalButton) {
+        console.warn('Элементы выпадающего меню не найдены');
+        return;
+    }
+    
+    // Функция для проверки мобильного устройства
+    function isMobile() {
+        return window.innerWidth <= 768;
+    }
+    
+    // Обработчик клика по кнопке "Дополнительно"
+    function handleAdditionalClick(e) {
+        if (!isMobile()) return;
+        
+        e.preventDefault();
+        console.log('Клик по дополнительно');
+        
+        // Закрываем все другие открытые dropdown
+        document.querySelectorAll('.dropdown').forEach(otherDropdown => {
+            if (otherDropdown !== dropdown && otherDropdown.classList.contains('active')) {
+                otherDropdown.classList.remove('active');
+            }
+        });
+        
+        // Переключаем текущий dropdown
+        dropdown.classList.toggle('active');
+    }
+    
+    // Обработчик клика вне dropdown
+    function handleOutsideClick(e) {
+        if (!isMobile()) return;
+        
+        if (!dropdown.contains(e.target)) {
+            dropdown.classList.remove('active');
+        }
+    }
+    
+    // Обработчик клика внутри dropdown
+    function handleDropdownClick(e) {
+        if (!isMobile()) return;
+        e.stopPropagation();
+    }
+    
+    // Обработчик ресайза окна
+    function handleResize() {
+        if (!isMobile()) {
+            dropdown.classList.remove('active');
+        }
+    }
+    
+    // Инициализация событий
+    if (isMobile()) {
+        additionalButton.addEventListener('click', handleAdditionalClick);
+        document.addEventListener('click', handleOutsideClick);
+        dropdown.addEventListener('click', handleDropdownClick);
+    }
+    
+    // Слушатель ресайза
+    window.addEventListener('resize', function() {
+        // Удаляем старые обработчики
+        additionalButton.removeEventListener('click', handleAdditionalClick);
+        document.removeEventListener('click', handleOutsideClick);
+        dropdown.removeEventListener('click', handleDropdownClick);
+        
+        // Добавляем новые обработчики в зависимости от размера экрана
+        if (isMobile()) {
+            additionalButton.addEventListener('click', handleAdditionalClick);
+            document.addEventListener('click', handleOutsideClick);
+            dropdown.addEventListener('click', handleDropdownClick);
+        } else {
+            dropdown.classList.remove('active');
+        }
+    });
+}
+
 
 // Адаптивный viewport для мобильных устройств
 function initResponsiveViewport() {
