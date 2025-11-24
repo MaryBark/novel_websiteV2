@@ -22,86 +22,97 @@ document.addEventListener('DOMContentLoaded', function() {
     initDropdownMenu();
 });
 
-// Функция инициализации выпадающего меню
 function initDropdownMenu() {
+    console.log('Инициализация выпадающего меню...');
+    
     const dropdown = document.getElementById('additional-dropdown');
     const additionalButton = document.getElementById('additional-button');
     
+    console.log('Найден dropdown:', dropdown);
+    console.log('Найден additionalButton:', additionalButton);
+    
     if (!dropdown || !additionalButton) {
-        console.warn('Элементы выпадающего меню не найдены');
+        console.error('Элементы выпадающего меню не найдены!');
         return;
     }
     
-    // Функция для проверки мобильного устройства
+    // Функция проверки мобильного устройства
     function isMobile() {
         return window.innerWidth <= 768;
     }
     
-    // Обработчик клика по кнопке "Дополнительно"
-    function handleAdditionalClick(e) {
+    // Переключение dropdown
+    function toggleDropdown(e) {
         if (!isMobile()) return;
         
+        console.log('Клик по кнопке Дополнительно');
         e.preventDefault();
-        console.log('Клик по дополнительно');
+        e.stopPropagation();
         
-        // Закрываем все другие открытые dropdown
+        // Закрываем другие dropdown
         document.querySelectorAll('.dropdown').forEach(otherDropdown => {
             if (otherDropdown !== dropdown && otherDropdown.classList.contains('active')) {
                 otherDropdown.classList.remove('active');
             }
         });
         
-        // Переключаем текущий dropdown
+        // Переключаем текущий
+        const isActive = dropdown.classList.contains('active');
         dropdown.classList.toggle('active');
+        console.log('Dropdown активен:', !isActive);
     }
     
-    // Обработчик клика вне dropdown
-    function handleOutsideClick(e) {
+    // Закрытие при клике вне dropdown
+    function closeDropdownOnClickOutside(e) {
         if (!isMobile()) return;
         
         if (!dropdown.contains(e.target)) {
+            console.log('Клик вне dropdown - закрываем');
             dropdown.classList.remove('active');
         }
     }
     
-    // Обработчик клика внутри dropdown
-    function handleDropdownClick(e) {
-        if (!isMobile()) return;
-        e.stopPropagation();
-    }
-    
-    // Обработчик ресайза окна
+    // Обработчик ресайза
     function handleResize() {
+        console.log('Ресайз окна, ширина:', window.innerWidth);
         if (!isMobile()) {
+            console.log('Десктоп - закрываем dropdown');
             dropdown.classList.remove('active');
         }
     }
     
-    // Инициализация событий
+    // Инициализация событий для мобильных
     if (isMobile()) {
-        additionalButton.addEventListener('click', handleAdditionalClick);
-        document.addEventListener('click', handleOutsideClick);
-        dropdown.addEventListener('click', handleDropdownClick);
+        console.log('Мобильное устройство - добавляем обработчики');
+        additionalButton.addEventListener('click', toggleDropdown);
+        document.addEventListener('click', closeDropdownOnClickOutside);
+        
+        // Предотвращаем закрытие при клике внутри dropdown
+        dropdown.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
     }
     
-    // Слушатель ресайза
-    window.addEventListener('resize', function() {
-        // Удаляем старые обработчики
-        additionalButton.removeEventListener('click', handleAdditionalClick);
-        document.removeEventListener('click', handleOutsideClick);
-        dropdown.removeEventListener('click', handleDropdownClick);
-        
-        // Добавляем новые обработчики в зависимости от размера экрана
-        if (isMobile()) {
-            additionalButton.addEventListener('click', handleAdditionalClick);
-            document.addEventListener('click', handleOutsideClick);
-            dropdown.addEventListener('click', handleDropdownClick);
-        } else {
-            dropdown.classList.remove('active');
-        }
-    });
+    // Обработчик ресайза
+    window.addEventListener('resize', handleResize);
+    
+    // Дебаг информация
+    console.log('Выпадающее меню инициализировано');
+    console.log('Текущая ширина:', window.innerWidth, 'isMobile:', isMobile());
 }
 
+// Дополнительно: функция для принудительного открытия/закрытия (для тестирования)
+function debugDropdown() {
+    const dropdown = document.getElementById('additional-dropdown');
+    if (dropdown) {
+        const isActive = dropdown.classList.contains('active');
+        dropdown.classList.toggle('active');
+        console.log('Принудительное переключение dropdown. Новое состояние:', !isActive);
+    }
+}
+
+// Добавляем глобальную функцию для отладки
+window.debugDropdown = debugDropdown;
 
 // Адаптивный viewport для мобильных устройств
 function initResponsiveViewport() {

@@ -12,37 +12,35 @@
 <!-- Обновленная навигация -->
 <nav class="navbar">
     <div class="nav-container">
-        <div class="nav-logo">
-            <span>Книга Мироздания</span>
-        </div>
-        <div class="nav-menu" id="nav-menu">
-            <a href="#about" class="nav-link">О романе</a>
-            <a href="#characters" class="nav-link">Персонажи</a>
-            <a href="#worlds" class="nav-link">Миры</a>
-            <a href="#plot" class="nav-link">Сюжет</a>
-            <a href="#features" class="nav-link">УТП</a>
-            <a href="#analogues" class="nav-link">Референсы</a>
-
-            <!-- Выпадающее меню Дополнительно -->
-            <div class="dropdown">
-                <a href="#additional" class="nav-link">
-                    Дополнительно 
-                    <i class="fas fa-chevron-down" style="margin-left: 5px; font-size: 0.8rem;"></i>
+    <div class="nav-menu" id="nav-menu">
+        <a href="#about" class="nav-link">О романе</a>
+        <a href="#characters" class="nav-link">Персонажи</a>
+        <a href="#worlds" class="nav-link">Миры</a>
+        <a href="#plot" class="nav-link">Сюжет</a>
+        <a href="#features" class="nav-link">УТП</a>
+        <a href="#analogues" class="nav-link">Референсы</a>
+        
+        <!-- Выпадающее меню Дополнительно -->
+        <div class="dropdown" id="additional-dropdown">
+            <a href="#additional" class="nav-link" id="additional-button">
+                Дополнительно
+                <i class="fas fa-chevron-down chevron" style="font-size: 0.8rem; margin-left: 8px;"></i>
+            </a>
+            <div class="dropdown-content">
+                <a href="#conlang" class="dropdown-link">
+                    <i class="fas fa-language"></i>
+                    Искусственные языки
                 </a>
-                <div class="dropdown-content">
-                    <a href="#conlang" class="dropdown-link">
-                        <i class="fas fa-language"></i>
-                        Искусственные языки
-                    </a>
-                    <a href="#metal-opera" class="dropdown-link">
-                        <i class="fas fa-music"></i>
-                        Метал-опера
-                    </a>
-                </div>
+                <a href="#metal-opera" class="dropdown-link">
+                    <i class="fas fa-music"></i>
+                    Метал-опера
+                </a>
             </div>
-
-            <a href="#author" class="nav-link">Автор</a>
         </div>
+        
+        <a href="#author" class="nav-link">Автор</a>
+    </div>
+</div>
         <div class="hamburger" id="hamburger">
             <span></span>
             <span></span>
