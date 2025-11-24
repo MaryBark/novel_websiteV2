@@ -72,74 +72,7 @@ body {
     color: var(--fantasy);
 }
 
- /* Стили для выпадающего меню */
-        .dropdown {
-            position: relative;
-        }
 
-        .dropdown-content {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: white;
-            min-width: 200px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            z-index: 1000;
-            margin-top: 5px;
-        }
-
-        .dropdown:hover .dropdown-content {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .dropdown-link {
-            display: block;
-            padding: 12px 20px;
-            text-decoration: none;
-            color: #2c3e50;
-            border-radius: 8px;
-            margin: 5px;
-            transition: all 0.3s ease;
-        }
-
-        .dropdown-link:hover {
-            background: #e94560;
-            color: white;
-        }
-
-        .dropdown-link i {
-            width: 20px;
-            margin-right: 10px;
-        }
-
-        /* Адаптивность */
-        @media (max-width: 768px) {
-            .nav-menu {
-                flex-direction: column;
-            }
-            
-            .dropdown-content {
-                position: static;
-                opacity: 1;
-                visibility: visible;
-                transform: none;
-                box-shadow: none;
-                background: #f8f9fa;
-                margin-top: 10px;
-                display: none;
-            }
-            
-            .dropdown:hover .dropdown-content {
-                display: block;
-            }
-        }
 
 
 /* Аннотация романа */
