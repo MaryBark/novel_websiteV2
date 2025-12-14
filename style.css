@@ -3929,3 +3929,16 @@ input, textarea {
 .dropdown-toggle[aria-expanded="true"] + .dropdown-menu {
     display: block;
 }
+
+
+/* Для мобильных */
+@media (max-width: 768px) {
+    .dropdown:hover .dropdown-content {
+        display: block !important; /* или другое значение */
+    }
+    
+    /* Или сделайте активацию по классу */
+    .dropdown.active .dropdown-content {
+        display: block;
+    }
+}
