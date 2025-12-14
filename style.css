@@ -3942,3 +3942,8 @@ input, textarea {
         display: block;
     }
 }
+
+.dropdown-content {
+    z-index: 1000;
+    position: absolute;
+}
