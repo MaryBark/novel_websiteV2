@@ -3892,3 +3892,22 @@ input, textarea {
         align-items: flex-start;
     }
 }
+
+
+
+
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background: #fff;
+    padding: 8px;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
