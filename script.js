@@ -15,104 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Инициализация параллакса
     initParallax();
 
-    // Инициализация аккордеона для творческого пути
+    // Инициализация дерева для творческого пути
     initWritingAccordion();
-
-    // Инициализация выпадающего меню
-    initDropdownMenu();
 });
-
-function initDropdownMenu() {
-    console.log('Инициализация выпадающего меню...');
-    
-    const dropdown = document.getElementById('additional-dropdown');
-    const additionalButton = document.getElementById('additional-button');
-    
-    console.log('Найден dropdown:', dropdown);
-    console.log('Найден additionalButton:', additionalButton);
-    
-    if (!dropdown || !additionalButton) {
-        console.error('Элементы выпадающего меню не найдены!');
-        return;
-    }
-    
-    // Функция проверки мобильного устройства
-    function isMobile() {
-        return window.innerWidth <= 768;
-    }
-    
-    // Переключение dropdown
-    function toggleDropdown(e) {
-        if (!isMobile()) return;
-        
-        console.log('Клик по кнопке Дополнительно');
-        e.preventDefault();
-        e.stopPropagation();
-        
-        // Закрываем другие dropdown
-        document.querySelectorAll('.dropdown').forEach(otherDropdown => {
-            if (otherDropdown !== dropdown && otherDropdown.classList.contains('active')) {
-                otherDropdown.classList.remove('active');
-            }
-        });
-        
-        // Переключаем текущий
-        const isActive = dropdown.classList.contains('active');
-        dropdown.classList.toggle('active');
-        console.log('Dropdown активен:', !isActive);
-    }
-    
-    // Закрытие при клике вне dropdown
-    function closeDropdownOnClickOutside(e) {
-        if (!isMobile()) return;
-        
-        if (!dropdown.contains(e.target)) {
-            console.log('Клик вне dropdown - закрываем');
-            dropdown.classList.remove('active');
-        }
-    }
-    
-    // Обработчик ресайза
-    function handleResize() {
-        console.log('Ресайз окна, ширина:', window.innerWidth);
-        if (!isMobile()) {
-            console.log('Десктоп - закрываем dropdown');
-            dropdown.classList.remove('active');
-        }
-    }
-    
-    // Инициализация событий для мобильных
-    if (isMobile()) {
-        console.log('Мобильное устройство - добавляем обработчики');
-        additionalButton.addEventListener('click', toggleDropdown);
-        document.addEventListener('click', closeDropdownOnClickOutside);
-        
-        // Предотвращаем закрытие при клике внутри dropdown
-        dropdown.addEventListener('click', function(e) {
-            e.stopPropagation();
-        });
-    }
-    
-    // Обработчик ресайза
-    window.addEventListener('resize', handleResize);
-    
-    // Дебаг информация
-    console.log('Выпадающее меню инициализировано');
-    console.log('Текущая ширина:', window.innerWidth, 'isMobile:', isMobile());
-}
-
-// Дополнительно: функция для принудительного открытия/закрытия (для тестирования)
-function debugDropdown() {
-    const dropdown = document.getElementById('additional-dropdown');
-    if (dropdown) {
-        const isActive = dropdown.classList.contains('active');
-        dropdown.classList.toggle('active');
-        console.log('Принудительное переключение dropdown. Новое состояние:', !isActive);
-    }
-}
-
-// Добавляем глобальную функцию для отладки
-window.debugDropdown = debugDropdown;
 
 // Адаптивный viewport для мобильных устройств
 function initResponsiveViewport() {
@@ -279,7 +184,7 @@ function initParallax() {
     }
 }
 
-// Аккордеон для творческого пути
+// Дерево творческого пути
 function initWritingAccordion() {
     const writingHeaders = document.querySelectorAll('.writing-header');
     
