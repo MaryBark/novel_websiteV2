@@ -1136,67 +1136,113 @@
     </div>
 </section>
 
-    <section id="world-map" class="map-section">
+      <section id="world-map" class="map-section">
         <div class="container">
             <h2 class="section-title">Супериора</h2>
             <div class="map-container">
                 <div class="map-header">
                     <h3 class="map-title">География вымышленного мира</h3>
-                   <!-- <p class="map-subtitle">Исследуйте континенты, королевства и магические земли грани реальности, созданной Книгой Мироздания"</p> -->
+                    <p class="map-subtitle">Исследуйте континенты, королевства и магические земли грани реальности, созданной Книгой Мироздания</p>
                 </div>
                 
-                <div class="map-image-container">
-                    <!-- Замените src на путь к вашей карте -->
-                    <img src="images/map.jpg" alt="Карта мира Книги Мироздания" class="map-image" 
-                         onerror="this.style.display='none'; document.getElementById('map-placeholder').style.display='flex';">
+                <div class="map-content">
+                    <!-- Контейнер для карты -->
+                    <div class="map-wrapper">
+                        <div class="map-image-container">
+                            <img src="images/map.jpg" alt="Карта мира Книги Мироздания" class="map-image" id="mainMap">
+                            <div class="map-overlay" id="mapOverlay"></div>
+                            
+                            <!-- Области на карте (координаты нужно настроить под вашу карту) -->
+                            <div class="map-area" data-region="miele" style="top: 30%; left: 40%; width: 60px; height: 60px;"></div>
+                            <div class="map-area" data-region="roonmueffi" style="top: 45%; left: 35%; width: 50px; height: 50px;"></div>
+                            <div class="map-area" data-region="hertaldean" style="top: 50%; left: 45%; width: 70px; height: 70px;"></div>
+                            <div class="map-area" data-region="berginni" style="top: 25%; left: 55%; width: 80px; height: 80px;"></div>
+                            <div class="map-area" data-region="augur" style="top: 60%; left: 30%; width: 55px; height: 55px;"></div>
+                        </div>
+                    </div>
                     
-                    <!-- Запасной вариант если изображение не загрузится -->
-                    <div id="map-placeholder" class="map-placeholder" style="display: none;">
-                        <i class="fas fa-map"></i>
-                        <span>Карта мира загружается...</span>
+                    <!-- Легенда справа -->
+                    <div class="map-legend">
+                        <h3 class="legend-title"><i class="fas fa-map-signs"></i> Легенда карты</h3>
+                        
+                        <div class="legend-categories">
+                            <div class="category">
+                                <h4><i class="fas fa-city"></i> Королевства и города</h4>
+                                <div class="legend-items">
+                                    <div class="legend-item" data-region="miele">
+                                        <div class="legend-color" style="background: #e94560;"></div>
+                                        <span class="legend-text">Столица Мьеле</span>
+                                        <i class="fas fa-info-circle info-icon"></i>
+                                    </div>
+                                    <div class="legend-item" data-region="roonmueffi">
+                                        <div class="legend-color" style="background: #3498db;"></div>
+                                        <span class="legend-text">Роонмюффи</span>
+                                        <i class="fas fa-info-circle info-icon"></i>
+                                    </div>
+                                    <div class="legend-item" data-region="augur">
+                                        <div class="legend-color" style="background: #9b59b6;"></div>
+                                        <span class="legend-text">Аугур</span>
+                                        <i class="fas fa-info-circle info-icon"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="category">
+                                <h4><i class="fas fa-mountain"></i> Природные объекты</h4>
+                                <div class="legend-items">
+                                    <div class="legend-item" data-region="hertaldean">
+                                        <div class="legend-color" style="background: #27ae60;"></div>
+                                        <span class="legend-text">Лес Хертальдин</span>
+                                        <i class="fas fa-info-circle info-icon"></i>
+                                    </div>
+                                    <div class="legend-item" data-region="berginni">
+                                        <div class="legend-color" style="background: #e67e22;"></div>
+                                        <span class="legend-text">Горы Бергинни</span>
+                                        <i class="fas fa-info-circle info-icon"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="category">
+                                <h4><i class="fas fa-water"></i> Водные пространства</h4>
+                                <div class="legend-items">
+                                    <div class="legend-item">
+                                        <div class="legend-color" style="background: #2980b9;"></div>
+                                        <span class="legend-text">Река Лунной Пыли</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <div class="legend-color" style="background: #1abc9c;"></div>
+                                        <span class="legend-text">Озеро Зеркальных Снов</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="legend-description" id="regionDescription">
+                            <h4><i class="fas fa-info-circle"></i> Информация о регионе</h4>
+                            <p>Нажмите на любой регион в легенде или на карте, чтобы увидеть подробное описание.</p>
+                        </div>
                     </div>
                 </div>
                 
-               <!-- <div class="map-legend">
-                    <div class="legend-item">
-                        <div class="legend-color" style="background: #4CAF50;"></div>
-                        <span class="legend-text">Лесные территории</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-color" style="background: #FF9800;"></div>
-                        <span class="legend-text">Горные цепи</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-color" style="background: #2196F3;"></div>
-                        <span class="legend-text">Водные пространства</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-color" style="background: #9C27B0;"></div>
-                        <span class="legend-text">Магические зоны</span>
-                    </div>
+                <!-- Контролы карты -->
+                <div class="map-controls">
+                    <button class="control-btn" onclick="zoomIn()">
+                        <i class="fas fa-search-plus"></i> Увеличить
+                    </button>
+                    <button class="control-btn" onclick="zoomOut()">
+                        <i class="fas fa-search-minus"></i> Уменьшить
+                    </button>
+                    <button class="control-btn" onclick="resetMap()">
+                        <i class="fas fa-sync-alt"></i> Сбросить
+                    </button>
+                    <button class="control-btn" onclick="highlightAll()">
+                        <i class="fas fa-eye"></i> Показать все
+                    </button>
                 </div>
-                
-                <div class="map-features">
-                    <div class="feature-card">
-                        <h4><i class="fas fa-mountain"></i> Континент Супериора</h4>
-                        <p>Центральный континент, где разворачиваются основные события эпопеи. Здесь расположены столицы королевств и древние магические центры.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4><i class="fas fa-water"></i> Океан Вечности</h4>
-                        <p>Бескрайний океан, разделяющий континенты. Говорят, в его глубинах скрыты древние цивилизации и затонувшие города.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4><i class="fas fa-tree"></i> Запретный лес</h4>
-                        <p>Древний лес, где обитают мифические существа и хранятся тайны древних богов. Доступ в лес ограничен магическими барьерами.</p>
-                    </div>
-                </div>  -->
-
-
-
             </div>
         </div>
     </section>
-
 
 
     <!-- Об авторе -->
@@ -1303,7 +1349,7 @@
     <div class="loglain-item status-in-progress">
         <div class="status-sticker in-progress">Редактура</div>
         <span class="book-number">Книга 5 "Книга Мироздания. Цена открытия"</span>
-        <p>Ученый, стремящаяся решить задачи тысячелетия, обменивается знаниями с древним богом, рискуя всеми мирами</p>
+        <p>Ученая, стремящаяся решить задачи тысячелетия, обменивается знаниями с древним богом, рискуя всеми мирами</p>
     </div>
     <div class="loglain-item status-in-progress">
         <div class="status-sticker in-progress">Черновик</div>

@@ -296,3 +296,235 @@ window.addEventListener('load', function() {
         navigator.serviceWorker.register('/sw.js').catch(console.error);
     }
 });
+
+
+// Инициализация интерактивной карты
+function initInteractiveMap() {
+    const mapImage = document.getElementById('mainMap');
+    const mapOverlay = document.getElementById('mapOverlay');
+    const legendItems = document.querySelectorAll('.legend-item[data-region]');
+    const mapAreas = document.querySelectorAll('.map-area');
+    const regionDescription = document.getElementById('regionDescription');
+    
+    // Данные регионов с описаниями
+    const regionsData = {
+        'miele': {
+            name: 'Столица Мьеле',
+            description: 'Столица Супериоры, центр политической и магической власти. Здесь расположен Дворец Хранителей и Великая Библиотека. Город построен вокруг древнего кристалла, питающего магические барьеры.',
+            type: 'capital'
+        },
+        'roonmueffi': {
+            name: 'Роонмюффи',
+            description: 'Торговый город на перекрестке караванных путей. Известен своими ремесленными гильдиями и ежегодной ярмаркой магических артефактов.',
+            type: 'city'
+        },
+        'hertaldean': {
+            name: 'Лес Хертальдин',
+            description: 'Древний магический лес, населенный эльфами и духами природы. Деревья здесь растут выше облаков, а в центре леса находится Источник Вечной Жизни.',
+            type: 'forest'
+        },
+        'berginni': {
+            name: 'Горы Бергинни',
+            description: 'Самые высокие горы Супериоры. Здесь обитают драконы и горные тролли. В глубинах гор находятся древние рудники, где добывают магические кристаллы.',
+            type: 'mountains'
+        },
+        'augur': {
+            name: 'Аугур',
+            description: 'Город предсказателей и астрологов. Здесь находится Обсерватория Судьбы, где маги читают будущее в звездах и энергетических потоках.',
+            type: 'city'
+        }
+    };
+    
+    // Инициализация зума
+    let currentScale = 1;
+    let isDragging = false;
+    let startX, startY;
+    let translateX = 0, translateY = 0;
+    
+    // Функция для выделения региона
+    function highlightRegion(regionId) {
+        // Убираем выделение у всех
+        legendItems.forEach(item => item.classList.remove('active'));
+        mapAreas.forEach(area => {
+            area.classList.remove('active');
+            area.classList.remove('highlight');
+        });
+        
+        // Выделяем выбранный регион
+        const legendItem = document.querySelector(`.legend-item[data-region="${regionId}"]`);
+        const mapArea = document.querySelector(`.map-area[data-region="${regionId}"]`);
+        
+        if (legendItem) legendItem.classList.add('active');
+        if (mapArea) {
+            mapArea.classList.add('active');
+            mapArea.classList.add('highlight');
+            
+            // Центрируем карту на регионе (если нужно)
+            const rect = mapArea.getBoundingClientRect();
+            const containerRect = mapImage.getBoundingClientRect();
+            
+            const centerX = (rect.left + rect.width / 2 - containerRect.left) / currentScale;
+            const centerY = (rect.top + rect.height / 2 - containerRect.top) / currentScale;
+            
+            // Плавная прокрутка к региону
+            smoothScrollTo(centerX, centerY);
+        }
+        
+        // Показываем описание региона
+        if (regionsData[regionId]) {
+            showRegionDescription(regionId);
+        }
+    }
+    
+    // Функция показа описания региона
+    function showRegionDescription(regionId) {
+        const region = regionsData[regionId];
+        regionDescription.innerHTML = `
+            <h4><i class="fas fa-info-circle"></i> ${region.name}</h4>
+            <p>${region.description}</p>
+            <div style="margin-top: 10px; font-size: 0.9rem; color: #e94560;">
+                <i class="fas fa-tag"></i> Тип: ${getRegionType(region.type)}
+            </div>
+        `;
+    }
+    
+    // Функция для получения читаемого типа региона
+    function getRegionType(type) {
+        const types = {
+            'capital': 'Столица',
+            'city': 'Город',
+            'forest': 'Лес',
+            'mountains': 'Горная цепь',
+            'river': 'Река',
+            'lake': 'Озеро'
+        };
+        return types[type] || type;
+    }
+    
+    // Обработчики для элементов легенды
+    legendItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const regionId = this.getAttribute('data-region');
+            highlightRegion(regionId);
+        });
+    });
+    
+    // Обработчики для областей на карте
+    mapAreas.forEach(area => {
+        area.addEventListener('click', function() {
+            const regionId = this.getAttribute('data-region');
+            highlightRegion(regionId);
+        });
+    });
+    
+    // Функции зума
+    function zoomIn() {
+        currentScale += 0.2;
+        updateMapTransform();
+    }
+    
+    function zoomOut() {
+        if (currentScale > 0.5) {
+            currentScale -= 0.2;
+            updateMapTransform();
+        }
+    }
+    
+    function resetMap() {
+        currentScale = 1;
+        translateX = 0;
+        translateY = 0;
+        updateMapTransform();
+        
+        // Сбрасываем выделение
+        legendItems.forEach(item => item.classList.remove('active'));
+        mapAreas.forEach(area => {
+            area.classList.remove('active');
+            area.classList.remove('highlight');
+        });
+        
+        // Сбрасываем описание
+        regionDescription.innerHTML = `
+            <h4><i class="fas fa-info-circle"></i> Информация о регионе</h4>
+            <p>Нажмите на любой регион в легенде или на карте, чтобы увидеть подробное описание.</p>
+        `;
+    }
+    
+    function highlightAll() {
+        mapAreas.forEach(area => {
+            area.classList.add('highlight');
+        });
+    }
+    
+    function updateMapTransform() {
+        mapImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentScale})`;
+    }
+    
+    // Плавная прокрутка к точке
+    function smoothScrollTo(x, y) {
+        const targetX = -x * currentScale + window.innerWidth / 2;
+        const targetY = -y * currentScale + window.innerHeight / 2;
+        
+        translateX = targetX;
+        translateY = targetY;
+        updateMapTransform();
+    }
+    
+    // Drag & drop для карты
+    mapImage.addEventListener('mousedown', startDrag);
+    mapImage.addEventListener('touchstart', startDragTouch);
+    
+    function startDrag(e) {
+        isDragging = true;
+        startX = e.clientX - translateX;
+        startY = e.clientY - translateY;
+        document.addEventListener('mousemove', drag);
+        document.addEventListener('mouseup', stopDrag);
+        mapImage.style.cursor = 'grabbing';
+    }
+    
+    function startDragTouch(e) {
+        if (e.touches.length === 1) {
+            isDragging = true;
+            startX = e.touches[0].clientX - translateX;
+            startY = e.touches[0].clientY - translateY;
+            document.addEventListener('touchmove', dragTouch);
+            document.addEventListener('touchend', stopDrag);
+        }
+    }
+    
+    function drag(e) {
+        if (!isDragging) return;
+        e.preventDefault();
+        translateX = e.clientX - startX;
+        translateY = e.clientY - startY;
+        updateMapTransform();
+    }
+    
+    function dragTouch(e) {
+        if (!isDragging || e.touches.length !== 1) return;
+        e.preventDefault();
+        translateX = e.touches[0].clientX - startX;
+        translateY = e.touches[0].clientY - startY;
+        updateMapTransform();
+    }
+    
+    function stopDrag() {
+        isDragging = false;
+        document.removeEventListener('mousemove', drag);
+        document.removeEventListener('touchmove', dragTouch);
+        document.removeEventListener('mouseup', stopDrag);
+        document.removeEventListener('touchend', stopDrag);
+        mapImage.style.cursor = 'grab';
+    }
+    
+    // Добавляем функции в глобальную область видимости
+    window.zoomIn = zoomIn;
+    window.zoomOut = zoomOut;
+    window.resetMap = resetMap;
+    window.highlightAll = highlightAll;
+    
+    // Инициализация
+    mapImage.style.cursor = 'grab';
+    console.log('Интерактивная карта инициализирована');
+}
