@@ -3901,13 +3901,31 @@ input, textarea {
     position: relative;
 }
 
+/* меню */
 .dropdown-menu {
     display: none;
     position: absolute;
     background: #fff;
     padding: 8px;
+    min-width: 200px;
+    z-index: 1000;
 }
 
-.dropdown:hover .dropdown-menu {
+/* ПК — по наведению */
+@media (hover: hover) {
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+}
+
+/* Мобильные — по клику */
+.dropdown-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-toggle:focus + .dropdown-menu,
+.dropdown-toggle[aria-expanded="true"] + .dropdown-menu {
     display: block;
 }
