@@ -17,6 +17,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Инициализация дерева для творческого пути
     initWritingAccordion();
+
+
+     const dropdownToggle = document.querySelector('.dropdown-toggle');
+    const dropdown = document.querySelector('.dropdown');
+    
+    // Обработчик для мобильных
+    dropdownToggle.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768) {
+            e.preventDefault();
+            e.stopPropagation();
+            dropdown.classList.toggle('active');
+        }
+    });
+    
+    // Закрытие при клике вне меню
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.dropdown') && window.innerWidth <= 768) {
+            dropdown.classList.remove('active');
+        }
+    });
+    
+    // Для тач-устройств
+    dropdownToggle.addEventListener('touchstart', function(e) {
+        if (window.innerWidth <= 768) {
+            e.preventDefault();
+            dropdown.classList.toggle('active');
+        }
+    });
+
 });
 
 // Адаптивный viewport для мобильных устройств
