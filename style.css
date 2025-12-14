@@ -3580,3 +3580,182 @@ input, textarea {
         justify-content: center;
     }
 }
+
+
+
+.opera-cover {
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cover-image-container {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    width: 400px; /* Квадрат: ширина = высоте */
+    height: 400px; /* Квадрат */
+    margin-bottom: 20px;
+    aspect-ratio: 1/1; /* Гарантирует соотношение сторон 1:1 */
+}
+
+.cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Обрезает изображение чтобы заполнить квадрат */
+    transition: transform 0.5s ease;
+}
+
+.cover-image:hover {
+    transform: scale(1.05);
+}
+
+.cover-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(26, 26, 46, 0.8) 0%, rgba(15, 52, 96, 0.7) 100%);
+    display: flex;
+    align-items: flex-end;
+    padding: 30px;
+}
+
+.cover-info {
+    color: white;
+    width: 100%;
+}
+
+.cover-info h4 {
+    font-size: 2rem;
+    margin-bottom: 5px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.cover-info p {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    opacity: 0.9;
+}
+
+.cover-details {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.cover-details span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    background: rgba(255,255,255,0.1);
+    padding: 5px 10px;
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
+}
+
+.cover-details i {
+    color: #e94560;
+}
+
+.cover-legend {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    max-width: 400px; /* Соответствует ширине квадрата */
+    margin-top: 15px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 15px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .cover-image-container {
+        width: 300px; /* Квадрат для планшетов */
+        height: 300px;
+    }
+    
+    .cover-overlay {
+        padding: 20px;
+    }
+    
+    .cover-info h4 {
+        font-size: 1.5rem;
+    }
+    
+    .cover-info p {
+        font-size: 1rem;
+    }
+    
+    .cover-details {
+        gap: 10px;
+    }
+    
+    .cover-details span {
+        font-size: 0.8rem;
+    }
+    
+    .cover-legend {
+        gap: 10px;
+        max-width: 300px; /* Адаптируется под квадрат */
+    }
+    
+    .legend-item {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .cover-image-container {
+        width: 250px; /* Квадрат для мобильных */
+        height: 250px;
+    }
+    
+    .cover-details {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .cover-legend {
+        flex-direction: column;
+        align-items: center;
+        max-width: 250px; /* Адаптируется под квадрат */
+    }
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 350px) {
+    .cover-image-container {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .cover-legend {
+        max-width: 200px;
+    }
+    
+    .legend-item {
+        padding: 5px 10px;
+        font-size: 0.8rem;
+    }
+}
