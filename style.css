@@ -3936,3 +3936,101 @@ input, textarea {
 }
 
 /* hhjhfdskjfgd*/
+.nav-item.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+    position: relative;
+    padding-right: 20px; /* место для стрелки */
+}
+
+.dropdown-toggle::after {
+    content: " ▼";
+    font-size: 0.7em;
+    margin-left: 5px;
+    opacity: 0.7;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    padding: 8px 0;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Стили для мобильной подсказки */
+.mobile-hint {
+    display: none; /* По умолчанию скрыта */
+    font-style: italic;
+    font-size: 0.7em;
+    color: #666;
+    margin-left: 8px;
+    opacity: 0.8;
+}
+
+/* Показываем подсказку только на мобильных */
+@media (max-width: 768px) {
+    .mobile-hint {
+        display: inline-block;
+    }
+    
+    /* Для мобильных: вместо hover используем класс active */
+    .dropdown.active .dropdown-menu {
+        display: block;
+        position: static;
+        width: 100%;
+        box-shadow: none;
+        border: 1px solid #eee;
+        margin-top: 5px;
+    }
+    
+    .dropdown-toggle {
+        padding: 8px 15px;
+        background: #f8f9fa;
+        border-radius: 4px;
+        display: inline-block;
+    }
+    
+    .dropdown-toggle::after {
+        content: " ▼";
+        float: right;
+        margin-top: 2px;
+    }
+}
+
+/* Улучшенная версия с анимацией */
+@media (max-width: 768px) {
+    .mobile-hint {
+        animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+        0%, 100% { opacity: 0.6; }
+        50% { opacity: 0.9; }
+    }
+    
+    .dropdown-menu {
+        transition: all 0.3s ease;
+        max-height: 0;
+        overflow: hidden;
+        display: block !important; /* Важно! */
+    }
+    
+    .dropdown.active .dropdown-menu {
+        max-height: 200px;
+        opacity: 1;
+    }
+}
