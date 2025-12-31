@@ -46,6 +46,72 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    //// Дополнительно для мобильных
+     // Проверяем, мобильное ли устройство
+    const isMobile = window.innerWidth <= 768;
+    
+    // Для мобильных устройств
+    if (isMobile) {
+        let touchTimer;
+        let longPress = false;
+        
+        // Обработчик touchstart (начало касания)
+        toggle.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            longPress = false;
+            
+            // Устанавливаем таймер для долгого нажатия
+            touchTimer = setTimeout(function() {
+                longPress = true;
+                dropdown.classList.add('active');
+            }, 500); // 500ms = 0.5 секунды
+        }, { passive: false });
+        
+        // Обработчик touchend (окончание касания)
+        toggle.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            clearTimeout(touchTimer);
+            
+            // Если было короткое нажатие (не долгое)
+            if (!longPress && window.innerWidth <= 768) {
+                dropdown.classList.toggle('active');
+            }
+        }, { passive: false });
+        
+        // Обработчик click (для десктопа и как запасной вариант)
+        toggle.addEventListener('click', function(e) {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Если уже не обработано touch-событиями
+                if (!longPress) {
+                    dropdown.classList.toggle('active');
+                }
+            }
+        });
+        
+        // Отмена долгого нажатия при движении пальца
+        toggle.addEventListener('touchmove', function() {
+            clearTimeout(touchTimer);
+        }, { passive: true });
+    }
+    
+    // Закрытие меню при клике вне его
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.nav-item.dropdown') && window.innerWidth <= 768) {
+            dropdown.classList.remove('active');
+        }
+    });
+    
+    // Закрытие меню при изменении ориентации экрана
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            dropdown.classList.remove('active');
+        }
+    });
+
+    
 });
 
 // Адаптивный viewport для мобильных устройств
